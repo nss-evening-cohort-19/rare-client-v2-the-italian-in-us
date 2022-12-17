@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import TagCard from '../../components/tags/TagCard';
 import { getAllTags } from '../../utils/data/tagData';
 
 function Tags() {
@@ -17,7 +18,7 @@ function Tags() {
 
   const renderTags = () => {
     if (tags && tags.length > 0) {
-      return tags.map((tag) => <div key={tag.id}>{tag.label}</div>);
+      return tags.map((tag) => <TagCard tagObj={tag} key={tag.id} />);
     }
     return (<div>No tag data found</div>);
   };
@@ -26,7 +27,6 @@ function Tags() {
     <div
       className="text-center d-flex flex-column justify-content-center align-content-center"
       style={{
-        height: '90vh',
         padding: '30px',
         maxWidth: '400px',
         margin: '0 auto',
