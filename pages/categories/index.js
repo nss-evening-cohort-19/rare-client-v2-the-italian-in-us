@@ -25,7 +25,7 @@ function Categories() {
         margin: '0 auto',
       }}
     >
-      <Button onClick={() => router.push('/categories/new')}> Create new tag</Button>
+      <Button onClick={() => router.push('/categories/new')}> Create new category</Button>
       {
         categories.map((category) => <CategoryCard categoryObj={category} key={category.id}>{category.label}</CategoryCard>)
       }
