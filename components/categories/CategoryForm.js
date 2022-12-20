@@ -7,11 +7,7 @@ function CategoryForm() {
   const [newCategory, setNewCategory] = useState('');
   const router = useRouter();
 
-  const onChange = (e) => {
-    if (e?.target?.value) {
-      setNewCategory(e.target.value);
-    }
-  };
+  const onChange = (e) => setNewCategory(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
