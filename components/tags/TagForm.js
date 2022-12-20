@@ -7,11 +7,7 @@ function TagForm() {
   const [newTag, setNewTag] = useState('');
   const router = useRouter();
 
-  const onChange = (e) => {
-    if (e?.target?.value) {
-      setNewTag(e.target.value);
-    }
-  };
+  const onChange = (e) => setNewTag(e.target.value);
 
   const handleSubmit = (e) => {
     e.preventDefault();
