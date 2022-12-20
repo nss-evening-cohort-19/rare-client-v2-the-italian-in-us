@@ -20,3 +20,22 @@ a {
 body {
   background-color: #88effd;
 }
+
+/* Reactions */
+
+.reactions-container{
+  padding: 8px;
+  background-color: slategray;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 4px;
+  border: 1px black solid
+}
+.popover{
+  max-width: 400px;
+}
+.reactions{
+  height: 30px;
+  width: 30px;
+  margin: 4px;
+}
