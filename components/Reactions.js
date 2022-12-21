@@ -56,7 +56,7 @@ function Reactions() {
       </OverlayTrigger>
       <div className="reactions-display">
         {reactions.map((reaction) => (
-          <input className={`display-reactions ${reaction.count === 0 ? 'no-show' : ''}`} type="image" onClick={handleClick} key={reaction.clicked} id={reaction.id} src={reaction.imageUrl} value={reaction.clicked} />
+          <><input className={`display-reactions ${reaction.count === 0 ? 'no-show' : ''}`} type="image" onClick={handleClick} key={reaction.id} id={reaction.id} src={reaction.imageUrl} value={reaction.clicked} /><span className={`reaction-counter ${reaction.count === 0 ? 'no-show' : ''}`}>{reaction.count}</span></>
         ))}
       </div>
     </div>
