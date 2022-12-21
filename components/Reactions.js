@@ -13,7 +13,7 @@ function Reactions() {
   const { user } = useAuth();
 
   const getTheContent = () => {
-    getReactions(1, 1).then(setReactions);
+    getReactions(user.id, 1).then(setReactions);
   };
 
   const handleClick = (e) => {
