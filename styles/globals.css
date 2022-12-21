@@ -22,8 +22,12 @@ body {
 }
 
 /* Reactions */
-
 .reactions-container{
+  width: 100%;
+  display: flex;
+
+}
+.reactions-dropdown{
   padding: 8px;
   background-color: slategray;
   display: flex;
@@ -38,4 +42,16 @@ body {
   height: 30px;
   width: 30px;
   margin: 4px;
+}
+
+.reactions-display{
+  margin-left: 10px;
+}
+.display-reactions{
+  height: 40px;
+  width: 40px;
+  margin: 4px;
+}
+.no-show{
+  display: none;
 }
