@@ -23,7 +23,7 @@ const createCategory = (category) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const updateCategory = (category) => fetch(`http://localhost:8000/games/${category.id}`, {
+const updateCategory = (category) => fetch(`http://localhost:8000/categories/${category.id}`, {
   method: 'PUT',
   headers: {
     'Content-Type': 'application/json',
