@@ -34,7 +34,8 @@ function Reactions() {
 
   useEffect(() => {
     getTheContent();
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   return (
     <div className="reactions-container">
