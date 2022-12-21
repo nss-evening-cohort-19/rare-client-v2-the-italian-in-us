@@ -17,7 +17,7 @@ function RegisterForm({ user, updateUser }) {
     profileImageUrl: user.fbUser.photoURL,
     createdOn: date,
     active: true,
-    is_staff: false,
+    isStaff: false,
   });
 
   const handleSubmit = (e) => {
