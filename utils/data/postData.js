@@ -43,13 +43,13 @@ const getSinglePost = (postId) => new Promise((resolve, reject) => {
       resolve({
         id: data.id,
         userId: data.user_id,
-        categoryId: data.category_id,
         title: data.title,
         publicationDate: data.publication_date,
         imageUrl: data.image_url,
         content: data.content,
         approved: data.approved,
         editedOn: data.edited_on,
+        category: data.category_id.id,
       });
     })
     .catch((error) => reject(error));

@@ -15,7 +15,6 @@ export default function PostForm({ post }) {
     content: '',
     title: '',
     imageUrl: '',
-    category: 0,
   };
   const [formInput, setFormInput] = useState(initialState);
   const [categories, setCategories] = useState([]);
@@ -63,7 +62,7 @@ export default function PostForm({ post }) {
           <Form.Select aria-label="Category" name="category" onChange={handleChange} className="mb-3" value={formInput.category} required>
             <option value="">Select a Category</option>
             {categories.map((category) => (
-              <option key={category.label} value={category.id}>
+              <option key={category.label} selected={category.id === formInput.category} value={category.id}>
                 {category.label}
               </option>
             ))}
