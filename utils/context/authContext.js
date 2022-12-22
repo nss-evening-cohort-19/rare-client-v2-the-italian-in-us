@@ -25,6 +25,7 @@ const AuthProvider = (props) => {
 
   const updateUser = useMemo(
     () => (uid) => checkUser(uid).then((gamerInfo) => {
+      console.log(gamerInfo);
       setUser({ fbUser: oAuthUser, ...gamerInfo });
     }),
     [oAuthUser],
@@ -34,12 +35,12 @@ const AuthProvider = (props) => {
     firebase.auth().onAuthStateChanged((fbUser) => {
       if (fbUser) {
         setOAuthUser(fbUser);
-        checkUser(fbUser.uid).then((gamerInfo) => {
+        checkUser(fbUser.uid).then((userInfo) => {
           let userObj = {};
-          if ('null' in gamerInfo) {
-            userObj = gamerInfo;
+          if ('null' in userInfo) {
+            userObj = userInfo;
           } else {
-            userObj = { fbUser, uid: fbUser.uid, ...gamerInfo };
+            userObj = { fbUser, uid: fbUser.uid, ...userInfo };
           }
           setUser(userObj);
         });
