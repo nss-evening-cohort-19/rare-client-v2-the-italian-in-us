@@ -9,5 +9,10 @@ const getAllPosts = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-// eslint-disable-next-line import/prefer-default-export
-export { getAllPosts };
+const deletepost = (id) => new Promise((resolve, reject) => {
+  fetch(`${dbUrl}/posts/${id}`, {
+    method: 'DELETE',
+  }).then(resolve).catch(reject);
+});
+
+export { getAllPosts, deletepost };

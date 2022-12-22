@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import PostCard from '../../components/post/PostCard';
+import PostCard from '../../components/Post/PostCard';
 import { getAllPosts } from '../../utils/data/posts';
 // import PostCard from '../../components/Post/PostCard';
 

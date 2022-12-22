@@ -48,10 +48,47 @@ body {
   margin-left: 10px;
 }
 .display-reactions{
-  height: 40px;
-  width: 40px;
+  height: 30px;
+  width: 30px;
   margin: 4px;
 }
 .no-show{
   display: none;
+}
+
+/* Post Card */
+.post-card-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.post-card-header, p {
+  margin-bottom: 0px
+}
+.post-card-user-div{
+  display:flex;
+  align-items: center;
+}
+.post-card-user-image{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.post-card-post-image{
+  width: 100%
+}
+
+.post-card-footer{
+  display:flex;
+}
+.post-card-buttons{
+  display: flex;
+  flex-direction: row;
+}
+.trash{
+  margin: 4px;
+}
+.gear{
+  margin: 4px;
 }
