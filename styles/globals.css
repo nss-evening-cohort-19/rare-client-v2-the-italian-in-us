@@ -20,3 +20,38 @@ a {
 body {
   background-color: #88effd;
 }
+
+/* Reactions */
+.reactions-container{
+  width: 100%;
+  display: flex;
+
+}
+.reactions-dropdown{
+  padding: 8px;
+  background-color: slategray;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 4px;
+  border: 1px black solid
+}
+.popover{
+  max-width: 400px;
+}
+.reactions{
+  height: 30px;
+  width: 30px;
+  margin: 4px;
+}
+
+.reactions-display{
+  margin-left: 10px;
+}
+.display-reactions{
+  height: 40px;
+  width: 40px;
+  margin: 4px;
+}
+.no-show{
+  display: none;
+}
