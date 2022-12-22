@@ -5,7 +5,7 @@ const createPost = (payload) => new Promise((resolve, reject) => {
     method: 'POST',
     body: JSON.stringify({
       uid: payload.uid,
-      category: payload.categoryId,
+      category_id: Number(payload.category),
       title: payload.title,
       publication_date: payload.publicationDate,
       image_url: payload.imageUrl,
@@ -32,8 +32,27 @@ const updatePost = (post) => new Promise((resolve, reject) => {
       'content-type': 'application/json',
     },
   })
-    .then((response) => resolve(response.json()))
+    .then((response) => resolve(response))
     .catch((error) => reject(error));
 });
 
-export { createPost, updatePost };
+const getSinglePost = (postId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/posts/${postId}`)
+    .then((response) => response.json())
+    .then((data) => {
+      resolve({
+        id: data.id,
+        userId: data.user_id,
+        categoryId: data.category_id,
+        title: data.title,
+        publicationDate: data.publication_date,
+        imageUrl: data.image_url,
+        content: data.content,
+        approved: data.approved,
+        editedOn: data.edited_on,
+      });
+    })
+    .catch((error) => reject(error));
+});
+
+export { createPost, updatePost, getSinglePost };

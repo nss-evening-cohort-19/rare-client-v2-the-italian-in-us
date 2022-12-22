@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { Form, FloatingLabel } from 'react-bootstrap';
+import { Form, FloatingLabel, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { useAuth } from '../utils/context/authContext';
 import getCategories from '../utils/data/categoryData';
@@ -15,7 +15,7 @@ export default function PostForm({ post }) {
     content: '',
     title: '',
     imageUrl: '',
-    editedOn: date,
+    category: 0,
   };
   const [formInput, setFormInput] = useState(initialState);
   const [categories, setCategories] = useState([]);
@@ -23,7 +23,7 @@ export default function PostForm({ post }) {
 
   useEffect(() => {
     getCategories().then(setCategories);
-    if (post.id) setFormInput(post);
+    if (post?.id) setFormInput(post);
   }, [post]);
 
   const handleChange = (e) => {
@@ -36,8 +36,8 @@ export default function PostForm({ post }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (post.id) {
-      updatePost(formInput).then(() => router.push('/posts'));
+    if (post?.id) {
+      updatePost({...formInput, editedOn: date}).then(() => router.push('/posts'));
     } else {
       createPost(formInput).then(() => router.push('/posts'));
     }
@@ -60,7 +60,7 @@ export default function PostForm({ post }) {
         </FloatingLabel>
 
         <FloatingLabel controlId="floatingSelect" label="Category">
-          <Form.Select aria-label="Category" name="category" onChange={handleChange} className="mb-3" value={post.category} required>
+          <Form.Select aria-label="Category" name="category" onChange={handleChange} className="mb-3" value={formInput.category} required>
             <option value="">Select a Category</option>
             {categories.map((category) => (
               <option key={category.label} value={category.id}>
@@ -69,7 +69,7 @@ export default function PostForm({ post }) {
             ))}
           </Form.Select>
         </FloatingLabel>
-
+        <Button type="submit">{post?.id ? 'Update' : 'Submit'} Post</Button>
       </Form>
     </>
   );
