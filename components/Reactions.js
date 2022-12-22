@@ -3,28 +3,29 @@ import React, { useEffect, useState } from 'react';
 import {
   Popover, OverlayTrigger, Button,
 } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import {
   createPostReaction, deletePostReaction, getPrForDelete, getReactions,
 } from '../utils/data/reactions';
 import { useAuth } from '../utils/context/authContext';
 
-function Reactions() {
+function Reactions({ postId }) {
   const [reactions, setReactions] = useState([]);
   const { user } = useAuth();
 
   const getTheContent = () => {
-    getReactions(user.id, 1).then(setReactions);
+    getReactions(user.id, postId).then(setReactions);
   };
 
   const handleClick = (e) => {
     const { value, id } = e.target;
     if (value === 'true') {
-      getPrForDelete(id, 1, user.id).then((postReaction) => {
+      getPrForDelete(id, postId, user.id).then((postReaction) => {
         deletePostReaction(postReaction[0].id).then(() => getTheContent());
       });
     } else {
       const postReaction = {
-        postId: 1,
+        postId,
         userId: user.id,
         reactionId: id,
       };
@@ -63,5 +64,9 @@ function Reactions() {
     </div>
   );
 }
+
+Reactions.propTypes = {
+  postId: PropTypes.number.isRequired,
+};
 
 export default Reactions;
