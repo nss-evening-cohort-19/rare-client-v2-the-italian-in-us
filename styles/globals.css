@@ -21,11 +21,21 @@ body {
   background-color: #88effd;
 }
 
+.userProfileContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25%;
+}
+
+.profileCard {
+  padding: 10px;
+}
 /* Reactions */
-.reactions-container{
+.reactions-container {
   width: 100%;
   display: flex;
-
 }
 .reactions-dropdown{
   padding: 8px;
