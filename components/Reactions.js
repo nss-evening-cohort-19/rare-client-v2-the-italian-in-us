@@ -13,7 +13,7 @@ function Reactions() {
   const { user } = useAuth();
 
   const getTheContent = () => {
-    getReactions(1, 1).then(setReactions);
+    getReactions(user.id, 1).then(setReactions);
   };
 
   const handleClick = (e) => {
@@ -34,7 +34,8 @@ function Reactions() {
 
   useEffect(() => {
     getTheContent();
-  }, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   return (
     <div className="reactions-container">
@@ -56,7 +57,7 @@ function Reactions() {
       </OverlayTrigger>
       <div className="reactions-display">
         {reactions.map((reaction) => (
-          <input className={`display-reactions ${reaction.count === 0 ? 'no-show' : ''}`} type="image" onClick={handleClick} key={reaction.clicked} id={reaction.id} src={reaction.imageUrl} value={reaction.clicked} />
+          <><input className={`display-reactions ${reaction.count === 0 ? 'no-show' : ''}`} type="image" onClick={handleClick} key={reaction.id} id={reaction.id} src={reaction.imageUrl} value={reaction.clicked} /><span className={`reaction-counter ${reaction.count === 0 ? 'no-show' : ''}`}>{reaction.count}</span></>
         ))}
       </div>
     </div>
