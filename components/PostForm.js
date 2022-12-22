@@ -37,7 +37,7 @@ export default function PostForm({ post }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (post?.id) {
-      updatePost({...formInput, editedOn: date}).then(() => router.push('/posts'));
+      updatePost({ ...formInput, editedOn: date }).then(() => router.push('/posts'));
     } else {
       createPost(formInput).then(() => router.push('/posts'));
     }
