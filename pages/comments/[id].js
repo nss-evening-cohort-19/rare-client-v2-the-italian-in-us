@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getAllCommentsByPost } from '../../utils/data/commentsData';
 import CommentCard from '../../components/comments/CommentCard';
@@ -9,25 +9,19 @@ export default function ViewComments() {
   const router = useRouter();
   const { id } = router.query;
 
-  const fetchAllCommentsForPost = useCallback(() => getAllCommentsByPost(id).then((commentsData) => setComments(commentsData)), [id]);
+  // Added timeout delay to fix the race condition of reading comments data soon after creation of new comments.
+  const onNewCommentCreated = () => setTimeout(() => getAllCommentsByPost(id).then((commentsData) => setComments(commentsData)), 300);
 
   useEffect(() => {
-    fetchAllCommentsForPost();
-  }, [fetchAllCommentsForPost, id]);
+    getAllCommentsByPost(id).then((commentsData) => setComments(commentsData));
+  }, [id]);
 
-  const renderComments = () => {
-    if (comments.length > 0) {
-      return comments.map((comment) => <CommentCard commentObj={comment} key={comment.id}>{comment.content}</CommentCard>);
-    }
-    return (<div> No comments found for the post</div>);
-  };
+  const renderComments = () => ((comments.length > 0) ? comments.map((comment) => <CommentCard commentObj={comment} key={comment.id} onCommentEditted={onNewCommentCreated}>{comment.content}</CommentCard>) : (<div> No comments found for the post</div>));
 
   return (
-    <div>
-      {renderComments()}
-      <div>
-        <CommentForm onNewCommentCreated={fetchAllCommentsForPost} postId={id} />
-      </div>
+    <div style={{ display: 'flex' }}>
+      <div>{renderComments()}</div>
+      <CommentForm onNewCommentCreated={onNewCommentCreated} postId={id} />
     </div>
   );
 }

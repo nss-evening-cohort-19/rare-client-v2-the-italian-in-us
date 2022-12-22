@@ -30,6 +30,7 @@ const updateComment = (comment) => fetch(`http://localhost:8000/comments/${comme
     'Content-Type': 'application/json',
     Accept: 'application/json',
   },
+  body: JSON.stringify(comment),
 })
   .then((response) => response.json())
   .then((data) => {
