@@ -1,8 +1,8 @@
 {
-  "name": "rare",
+  "name": "rare-client-v2",
   "private": true,
   "version": "1.0.0",
-  "author": "Justin Ferwerda",
+  "author": "Nishaya Raj",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

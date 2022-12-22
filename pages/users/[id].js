@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Image } from 'react-bootstrap';
-import ProfileCard from '../../components/ProfileCard';
+import ProfileCard from '../../components/profileCard';
 import { useAuth } from '../../utils/context/authContext';
 import getSingleUser from '../../utils/data/userData';
 
