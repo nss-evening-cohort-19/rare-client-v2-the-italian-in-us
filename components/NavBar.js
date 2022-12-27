@@ -34,6 +34,10 @@ export default function NavBar() {
               <Nav.Link>Custom Feed
               </Nav.Link>
             </Link>
+            <Link passHref href={`/users/${user.id}`}>
+              <Nav.Link>My Profile
+              </Nav.Link>
+            </Link>
             <Button variant="danger" onClick={signOut}>
               Sign Out
             </Button>
