@@ -55,4 +55,13 @@ const getSinglePost = (postId) => new Promise((resolve, reject) => {
     .catch((error) => reject(error));
 });
 
-export { createPost, updatePost, getSinglePost };
+const getCustomFeed = (userId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/posts/${userId}/getSubscribedPosts`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
+export {
+  createPost, updatePost, getSinglePost, getCustomFeed,
+};
