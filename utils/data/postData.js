@@ -10,6 +10,7 @@ const createPost = (payload) => new Promise((resolve, reject) => {
       publication_date: payload.publicationDate,
       image_url: payload.imageUrl,
       content: payload.content,
+      tag_ids: payload.tagIds,
     }),
     headers: {
       'content-type': 'application/json',
