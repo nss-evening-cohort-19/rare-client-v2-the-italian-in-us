@@ -16,21 +16,37 @@ function PostCard({ postObj, onUpdate }) {
     }
   };
 
+  const handleKeyDown = (e) => {
+    const { id } = e.target;
+    console.warn(id);
+    if (e.keyCode === 13) {
+      if (id === 'post') {
+        router.push(`/posts/${postObj.id}`);
+      } else {
+        router.push(`/users/${postObj.user_id.id}`);
+      }
+    }
+  };
+
   return (
     <Card className="post-card">
       <Card.Header className="post-card-header">
-        <div className="post-card-user-div">
+        <div id="user" className="post-card-user-div" role="button" onClick={() => router.push(`/users/${postObj.user_id.id}`)} onKeyDown={handleKeyDown} tabIndex="0">
           <Image className="post-card-user-image" src={postObj.user_id.profile_image_url} />
           <Card.Text>{postObj.user_id.first_name}{postObj.user_id.last_name}</Card.Text>
         </div>
         <Card.Text>Posted In: {postObj.category_id.label}</Card.Text>
         <Card.Text>Published: {postObj.publication_date}</Card.Text>
       </Card.Header>
-      <Card.Body class>
-        <Card.Title>{postObj.title}</Card.Title>
-        <Image className="post-card-post-image" src={postObj.image_url} />
-        <Card.Text>{postObj.content}</Card.Text>
-      </Card.Body>
+      <div id="post" type="button" onClick={() => router.push(`/posts/${postObj.id}`)} onKeyDown={handleKeyDown} role="button" tabIndex="0">
+        <Card.Body className="post-card-body">
+          <div className="post-card-title-content">
+            <Card.Title>{postObj.title}</Card.Title>
+            <Card.Text className="post-card-content">{postObj.content}</Card.Text>
+          </div>
+          <Image className="post-card-post-image" src={postObj.image_url} />
+        </Card.Body>
+      </div>
       <Card.Footer className="post-card-footer">
         <Reactions postId={postObj.id} />
         {user.id === postObj.user_id.id ? (

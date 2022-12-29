@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Image } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import { deleteComment, updateComment } from '../../utils/data/commentsData';
 import { useAuth } from '../../utils/context/authContext';
@@ -8,7 +8,7 @@ import { useAuth } from '../../utils/context/authContext';
 function CommentCard({ commentObj, onCommentEditted }) {
   const { user } = useAuth();
   const [editView, setEditView] = useState(false);
-  const [editComment, setEditComment] = useState('');
+  const [editComment, setEditComment] = useState(commentObj.content);
 
   const deleteThisComment = () => {
     if (window.confirm(`Delete ${commentObj.content}?`)) {
@@ -36,9 +36,10 @@ function CommentCard({ commentObj, onCommentEditted }) {
 
   return (
     <Card className="text-center">
-      <Card.Body>
+      <Card.Body className="comment-card-body">
+        <Image className="comment-user-image" src={commentObj.authorId.profile_image_url} />
         {!editView ? (
-          <div>
+          <div className="comment-edit-div">
             <Card.Text>{commentObj.content}</Card.Text>
             {commentObj?.authorId?.id === user.id && <Button variant="info" onClick={() => setEditView(true)}>EDIT</Button>}
             <Button variant="danger" onClick={deleteThisComment} className="m-2">
@@ -46,11 +47,11 @@ function CommentCard({ commentObj, onCommentEditted }) {
             </Button>
           </div>
         ) : (
-          <div>
-            <Form onSubmit={handleEditSubmit}>
+          <div className="comment-edit-div">
+            <Form className="comment-edit" onSubmit={handleEditSubmit}>
               <Form.Group className="mb-3">
                 <Form.Label>Update comment</Form.Label>
-                <input type="text" name="Comment" value={editComment} onChange={onChange} />
+                <input className="edit-comment-input" type="text" name="Comment" value={editComment} onChange={onChange} />
               </Form.Group>
               <Button variant="primary" type="submit">
                 Update
@@ -76,6 +77,10 @@ CommentCard.propTypes = {
     }),
     authorId: PropTypes.shape({
       id: PropTypes.number.isRequired,
+      profile_image_url: PropTypes.string.isRequired,
+      first_name: PropTypes.string.isRequired,
+      last_name: PropTypes.string.isRequired,
+
     }),
     createdOn: PropTypes.string.isRequired,
   }).isRequired,

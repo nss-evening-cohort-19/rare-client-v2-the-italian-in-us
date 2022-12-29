@@ -18,6 +18,7 @@ export default function UserProfile() {
 
   useEffect(() => {
     getUserDetails();
+    console.warn(user);
   }, [userProfile.subbed]);
 
   return (

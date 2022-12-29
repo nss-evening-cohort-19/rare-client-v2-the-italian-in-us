@@ -1,7 +1,7 @@
 import { clientCredentials } from '../client';
 
 const getAllCommentsByPost = (postId) => new Promise((resolve, reject) => {
-  fetch(`${clientCredentials.databaseURL}/comments?postid=${postId}`)
+  fetch(`${clientCredentials.databaseURL}/comments?postId=${postId}`)
     .then((response) => response.json())
     .then(resolve)
     .catch(reject);
