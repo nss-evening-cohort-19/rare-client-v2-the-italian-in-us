@@ -88,13 +88,25 @@ body {
   display: flex;
   flex-direction: column;
 }
+.post-page-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px;
+}
+.all-posts-title{
+  margin-bottom: 1px;
+}
+
 .add-post{
   display: flex;
   align-self: flex-end;
   align-items: center;
+  height: 3em;
 }
-.add-post h2:first-child{
+.add-post h2{
   margin-right: 8px;
+  margin-top: 4px;
 }
 
 
@@ -151,10 +163,10 @@ body {
   flex-direction: row;
 }
 .trash{
-  margin: 4px;
+  margin: 2px;
 }
 .gear{
-  margin: 4px;
+  margin: 2px;
 }
 
 /* Single Post */

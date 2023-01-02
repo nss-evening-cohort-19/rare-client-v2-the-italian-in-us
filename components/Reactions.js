@@ -11,6 +11,7 @@ import { useAuth } from '../utils/context/authContext';
 
 function Reactions({ postId }) {
   const [reactions, setReactions] = useState([]);
+  const [showPop, setShowPop] = useState(false);
   const { user } = useAuth();
 
   const getTheContent = () => {
@@ -31,6 +32,7 @@ function Reactions({ postId }) {
       };
       createPostReaction(postReaction).then(() => getTheContent());
     }
+    setShowPop(!showPop);
   };
 
   useEffect(() => {
@@ -41,8 +43,11 @@ function Reactions({ postId }) {
   return (
     <div className="reactions-container">
       <OverlayTrigger
-        trigger="click"
+        show={showPop}
         placement="bottom"
+        trigger="click"
+        rootClose
+        onToggle={() => setShowPop(!showPop)}
         overlay={(
           <Popover>
             <Popover.Body className="reactions-dropdown">

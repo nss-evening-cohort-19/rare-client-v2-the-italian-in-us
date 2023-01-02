@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image } from 'react-bootstrap';
+import { Button, Card, Image } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { FaHubspot, FaRegTrashAlt } from 'react-icons/fa';
 import { useRouter } from 'next/router';
@@ -51,8 +51,8 @@ function PostCard({ postObj, onUpdate }) {
         <Reactions postId={postObj.id} />
         {user.id === postObj.user_id.id ? (
           <div className="post-card-buttons">
-            <icon type="button" className="gear" onClick={() => router.push(`/posts/edit/${postObj.id}`)}><FaHubspot size={30} /></icon>
-            <icon type="button" className="trash" onClick={() => deletePost()}><FaRegTrashAlt size={30} /></icon>
+            <Button variant="outline-dark" type="button" className="gear" onClick={() => router.push(`/posts/edit/${postObj.id}`)}><FaHubspot size={30} /></Button>
+            <Button variant="outline-dark" type="button" className="trash" onClick={() => deletePost()}><FaRegTrashAlt size={30} /></Button>
           </div>
         ) : ''}
       </Card.Footer>
