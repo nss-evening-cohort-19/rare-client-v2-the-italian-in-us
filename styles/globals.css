@@ -102,3 +102,7 @@ body {
 .gear{
   margin: 4px;
 }
+
+.profileUserName {
+  cursor: pointer;
+}

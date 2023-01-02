@@ -3,6 +3,7 @@ import { Card, Image } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { FaHubspot, FaRegTrashAlt } from 'react-icons/fa';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import Reactions from '../Reactions';
 import { useAuth } from '../../utils/context/authContext';
 
@@ -21,7 +22,9 @@ function PostCard({ postObj, onUpdate }) {
       <Card.Header className="post-card-header">
         <div className="post-card-user-div">
           <Image className="post-card-user-image" src={postObj.user_id.profile_image_url} />
-          <Card.Text>{postObj.user_id.first_name}{postObj.user_id.last_name}</Card.Text>
+          <Link href={`/users/${postObj.user_id.id}`} passHref>
+            <Card.Text className="profileUserName">{postObj.user_id.first_name}{postObj.user_id.last_name}</Card.Text>
+          </Link>
         </div>
         <Card.Text>Posted In: {postObj.category_id.label}</Card.Text>
         <Card.Text>Published: {postObj.publication_date}</Card.Text>
