@@ -7,6 +7,7 @@ import {
   Nav,
   Button,
   Image,
+  Dropdown,
 } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
@@ -36,6 +37,23 @@ export default function NavBar() {
               <Nav.Link>All Posts
               </Nav.Link>
             </Link>
+            <Dropdown>
+              <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
+                Admin
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Link href="/categories" passHref>
+                  <Dropdown.Item>Category Manager</Dropdown.Item>
+                </Link>
+                <Link href="/" passHref>
+                  <Dropdown.Item>Tag Manager</Dropdown.Item>
+                </Link>
+                <Link href="/" passHref>
+                  <Dropdown.Item>Admin Requests</Dropdown.Item>
+                </Link>
+              </Dropdown.Menu>
+            </Dropdown>
             <div className="nav-user-and-signout">
               <Image className="nav-user-image" src={loggedUser.profileImageUrl} />
               <Link passHref href={`/users/${user.id}`}>

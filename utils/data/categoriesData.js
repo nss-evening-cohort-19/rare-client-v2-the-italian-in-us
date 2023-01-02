@@ -38,7 +38,7 @@ const updateCategory = (category) => fetch(`http://localhost:8000/categories/${c
     console.error('Error:', error);
   });
 
-const deleteThisCategory = (id) => fetch(`http://localhost:8000/games/${id}`, {
+const deleteThisCategory = (id) => fetch(`http://localhost:8000/categories/${id}`, {
   method: 'DELETE',
 });
 
