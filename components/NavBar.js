@@ -36,6 +36,22 @@ export default function NavBar() {
               <Nav.Link>All Posts
               </Nav.Link>
             </Link>
+            <Link passHref href={`/posts/customFeed/${user.id}`}>
+              <Nav.Link>Custom Feed
+              </Nav.Link>
+            </Link>
+            <Link passHref href={`/users/${user.id}`}>
+              <Nav.Link>My Profile
+              </Nav.Link>
+            </Link>
+            <Link passHref href="/tags">
+              <Nav.Link>Tag Manager
+              </Nav.Link>
+            </Link>
+            <Link passHref href="/categories">
+              <Nav.Link>Category Manager
+              </Nav.Link>
+            </Link>
             <div className="nav-user-and-signout">
               <Image className="nav-user-image" src={loggedUser.profileImageUrl} />
               <Link passHref href={`/users/${user.id}`}>

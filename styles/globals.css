@@ -236,3 +236,11 @@ body {
   margin-right: 8px;
   width: 75%;
 }
+
+.profileUserName {
+  cursor: pointer;
+}
+
+.submitButton {
+  margin-top: 6px;
+}

@@ -2,9 +2,11 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { Form, FloatingLabel, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import Select from 'react-select';
 import { useAuth } from '../utils/context/authContext';
 import getCategories from '../utils/data/categoryData';
 import { createPost, updatePost } from '../utils/data/postData';
+import { getAllTags } from '../utils/data/tagData';
 
 export default function PostForm({ post }) {
   const { user } = useAuth();
@@ -18,10 +20,20 @@ export default function PostForm({ post }) {
   };
   const [formInput, setFormInput] = useState(initialState);
   const [categories, setCategories] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [selected, setSelected] = useState([]);
   const router = useRouter();
+
+  const tagOptions = tags.map((tag) => (
+    {
+      value: tag.id,
+      label: tag.label,
+    }
+  ));
 
   useEffect(() => {
     getCategories().then(setCategories);
+    getAllTags().then(setTags);
     if (post?.id) setFormInput(post);
   }, [post]);
 
@@ -33,12 +45,16 @@ export default function PostForm({ post }) {
     }));
   };
 
+  const tagHandleChange = (selectedOptions) => {
+    setSelected(selectedOptions.map((option) => option.value));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (post?.id) {
       updatePost({ ...formInput, editedOn: date }).then(() => router.push('/posts'));
     } else {
-      createPost(formInput).then(() => router.push('/posts'));
+      createPost({ ...formInput, tagIds: selected }).then(() => router.push('/posts'));
     }
   };
 
@@ -68,7 +84,17 @@ export default function PostForm({ post }) {
             ))}
           </Form.Select>
         </FloatingLabel>
-        <Button type="submit">{post?.id ? 'Update' : 'Submit'} Post</Button>
+        <Form.Label>Tags</Form.Label>
+        <Select
+          isMulti
+          name="tags"
+          options={tagOptions}
+          className="basic-multi-select"
+          classNamePrefix="select"
+          onChange={tagHandleChange}
+          required
+        />
+        <Button type="submit" className="submitButton">{post?.id ? 'Update' : 'Submit'} Post</Button>
       </Form>
     </>
   );
