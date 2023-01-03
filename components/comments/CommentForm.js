@@ -39,7 +39,7 @@ function CommentForm({ postId, onNewCommentCreated }) {
 
 CommentForm.propTypes = {
   onNewCommentCreated: PropTypes.func.isRequired,
-  postId: PropTypes.number.isRequired,
+  postId: PropTypes.string.isRequired,
   // authorId: PropTypes.number.isRequired,
 };
 

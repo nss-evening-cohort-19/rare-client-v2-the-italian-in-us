@@ -3,6 +3,7 @@ import { Button, Card, Image } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { FaHubspot, FaRegTrashAlt } from 'react-icons/fa';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import Reactions from '../Reactions';
 import { useAuth } from '../../utils/context/authContext';
 
@@ -18,7 +19,6 @@ function PostCard({ postObj, onUpdate }) {
 
   const handleKeyDown = (e) => {
     const { id } = e.target;
-    console.warn(id);
     if (e.keyCode === 13) {
       if (id === 'post') {
         router.push(`/posts/${postObj.id}`);
@@ -33,7 +33,9 @@ function PostCard({ postObj, onUpdate }) {
       <Card.Header className="post-card-header">
         <div id="user" className="post-card-user-div" role="button" onClick={() => router.push(`/users/${postObj.user_id.id}`)} onKeyDown={handleKeyDown} tabIndex="0">
           <Image className="post-card-user-image" src={postObj.user_id.profile_image_url} />
-          <Card.Text>{postObj.user_id.first_name}{postObj.user_id.last_name}</Card.Text>
+          <Link href={`/users/${postObj.user_id.id}`} passHref>
+            <Card.Text className="profileUserName">{postObj.user_id.first_name}{postObj.user_id.last_name}</Card.Text>
+          </Link>
         </div>
         <Card.Text>Posted In: {postObj.category_id.label}</Card.Text>
         <Card.Text>Published: {postObj.publication_date}</Card.Text>
@@ -45,6 +47,11 @@ function PostCard({ postObj, onUpdate }) {
             <Card.Text className="post-card-content">{postObj.content}</Card.Text>
           </div>
           <Image className="post-card-post-image" src={postObj.image_url} />
+          <div>
+            {postObj?.tags_on_posts?.map((tag) => (
+              <span>#{tag}</span>
+            ))}
+          </div>
         </Card.Body>
       </div>
       <Card.Footer className="post-card-footer">
@@ -76,6 +83,7 @@ PostCard.propTypes = {
     category_id: PropTypes.shape({
       label: PropTypes.string,
     }),
+    tags_on_posts: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

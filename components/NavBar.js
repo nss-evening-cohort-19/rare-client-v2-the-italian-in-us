@@ -37,6 +37,14 @@ export default function NavBar() {
               <Nav.Link>All Posts
               </Nav.Link>
             </Link>
+            <Link passHref href={`/posts/customFeed/${user.id}`}>
+              <Nav.Link>Custom Feed
+              </Nav.Link>
+            </Link>
+            <Link passHref href={`/users/${user.id}`}>
+              <Nav.Link>My Profile
+              </Nav.Link>
+            </Link>
             <Dropdown>
               <Dropdown.Toggle variant="outline-light" id="dropdown-basic">
                 Admin

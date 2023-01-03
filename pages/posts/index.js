@@ -8,9 +8,9 @@ import PostCard from '../../components/Post/PostCard';
 import { getAllPosts } from '../../utils/data/posts';
 
 function AllPosts() {
-  const router = useRouter();
   const [posts, setPosts] = useState([]);
   const cronPosts = posts.sort((a, b) => a.publication_date - b.publication_date);
+  const router = useRouter();
 
   const getTheContent = () => {
     getAllPosts().then(setPosts);

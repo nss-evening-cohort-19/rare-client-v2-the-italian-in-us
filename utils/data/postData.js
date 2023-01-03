@@ -10,6 +10,7 @@ const createPost = (payload) => new Promise((resolve, reject) => {
       publication_date: payload.publicationDate,
       image_url: payload.imageUrl,
       content: payload.content,
+      tag_ids: payload.tagIds,
     }),
     headers: {
       'content-type': 'application/json',
@@ -50,9 +51,19 @@ const getSinglePost = (postId) => new Promise((resolve, reject) => {
         approved: data.approved,
         editedOn: data.edited_on,
         category: data.category_id,
+        tagsOnPost: data.tags_on_posts,
       });
     })
     .catch((error) => reject(error));
 });
 
-export { createPost, updatePost, getSinglePost };
+const getCustomFeed = (userId) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/posts/${userId}/getSubscribedPosts`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
+export {
+  createPost, updatePost, getSinglePost, getCustomFeed,
+};
