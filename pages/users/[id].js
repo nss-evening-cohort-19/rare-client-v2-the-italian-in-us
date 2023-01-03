@@ -18,7 +18,7 @@ export default function UserProfile() {
 
   useEffect(() => {
     getUserDetails();
-  }, [userProfile.subbed]);
+  }, [userProfile.subbed, router.query]);
 
   return (
     <>
