@@ -50,6 +50,7 @@ const getSinglePost = (postId) => new Promise((resolve, reject) => {
         approved: data.approved,
         editedOn: data.edited_on,
         category: data.category_id,
+        tagsOnPost: data.tags_on_posts,
       });
     })
     .catch((error) => reject(error));

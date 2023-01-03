@@ -39,6 +39,11 @@ function SinglePost({ postObj, onUpdate }) {
         <Image className="post-image" src={postObj.imageUrl} />
       </Card.Body>
       <Card.Text className="post-content">{postObj.content}</Card.Text>
+      <div>
+        {postObj?.tagsOnPost?.map((tag) => (
+          <span>#{tag} </span>
+        ))}
+      </div>
       <Card.Footer className="post-card-footer">
 
         <Reactions postId={postObj?.id} />
@@ -70,6 +75,7 @@ SinglePost.propTypes = {
     category: PropTypes.shape({
       label: PropTypes.string,
     }),
+    tagsOnPost: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };

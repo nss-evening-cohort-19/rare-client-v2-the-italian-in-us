@@ -18,7 +18,6 @@ function PostCard({ postObj, onUpdate }) {
 
   const handleKeyDown = (e) => {
     const { id } = e.target;
-    console.warn(id);
     if (e.keyCode === 13) {
       if (id === 'post') {
         router.push(`/posts/${postObj.id}`);
@@ -45,6 +44,11 @@ function PostCard({ postObj, onUpdate }) {
             <Card.Text className="post-card-content">{postObj.content}</Card.Text>
           </div>
           <Image className="post-card-post-image" src={postObj.image_url} />
+          <div>
+            {postObj?.tags_on_posts.map((tag) => (
+              <span>#{tag}</span>
+            ))}
+          </div>
         </Card.Body>
       </div>
       <Card.Footer className="post-card-footer">
@@ -76,6 +80,7 @@ PostCard.propTypes = {
     category_id: PropTypes.shape({
       label: PropTypes.string,
     }),
+    tags_on_posts: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
 };
