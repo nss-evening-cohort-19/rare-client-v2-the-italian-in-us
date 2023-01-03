@@ -32,13 +32,15 @@ function Reactions({ postId }) {
       };
       createPostReaction(postReaction).then(() => getTheContent());
     }
-    setShowPop(!showPop);
+    if (e.target.className === 'reactions') {
+      setShowPop(!showPop);
+    }
   };
 
   useEffect(() => {
     getTheContent();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user, postId]);
+  }, [postId]);
 
   return (
     <div className="reactions-container">
@@ -54,7 +56,6 @@ function Reactions({ postId }) {
               {reactions.map((reaction) => (
                 <input className="reactions" type="image" key={reaction.id} onClick={handleClick} value={reaction.clicked} id={reaction.id} src={reaction.imageUrl} />
               ))}
-
             </Popover.Body>
           </Popover>
             )}
@@ -63,7 +64,7 @@ function Reactions({ postId }) {
       </OverlayTrigger>
       <div className="reactions-display">
         {reactions.map((reaction) => (
-          <><input className={`display-reactions ${reaction.count === 0 ? 'no-show' : ''}`} type="image" onClick={handleClick} key={reaction.id} id={reaction.id} src={reaction.imageUrl} value={reaction.clicked} /><span className={`reaction-counter ${reaction.count === 0 ? 'no-show' : ''}`}>{reaction.count}</span></>
+          <div key={reaction.id}><input className={`display-reactions ${reaction.count === 0 ? 'no-show' : ''}`} type="image" onClick={handleClick} key={reaction.id} id={reaction.id} src={reaction.imageUrl} value={reaction.clicked} /><span className={`reaction-counter ${reaction.count === 0 ? 'no-show' : ''}`}>{reaction.count}</span></div>
         ))}
       </div>
     </div>
@@ -71,7 +72,11 @@ function Reactions({ postId }) {
 }
 
 Reactions.propTypes = {
-  postId: PropTypes.number.isRequired,
+  postId: PropTypes.number,
+};
+
+Reactions.defaultProps = {
+  postId: 0,
 };
 
 export default Reactions;

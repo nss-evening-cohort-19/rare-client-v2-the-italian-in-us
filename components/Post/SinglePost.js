@@ -40,7 +40,9 @@ function SinglePost({ postObj, onUpdate }) {
       </Card.Body>
       <Card.Text className="post-content">{postObj.content}</Card.Text>
       <Card.Footer className="post-card-footer">
+
         <Reactions postId={postObj?.id} />
+
         {user.id === postObj.userId?.id ? (
           <div className="post-buttons">
             <icon type="button" className="gear" onClick={() => router.push(`/posts/edit/${postObj.id}`)}><FaHubspot size={30} /></icon>

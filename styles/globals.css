@@ -73,6 +73,7 @@ body {
 
 .reactions-display{
   margin-left: 10px;
+  display: flex;
 }
 .display-reactions{
   height: 30px;
