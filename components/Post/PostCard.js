@@ -48,7 +48,7 @@ function PostCard({ postObj, onUpdate }) {
           </div>
           <Image className="post-card-post-image" src={postObj.image_url} />
           <div>
-            {postObj?.tags_on_posts.map((tag) => (
+            {postObj?.tags_on_posts?.map((tag) => (
               <span>#{tag}</span>
             ))}
           </div>
