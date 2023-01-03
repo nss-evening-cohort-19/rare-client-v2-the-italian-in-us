@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Reactions from '../Reactions';
 import { useAuth } from '../../utils/context/authContext';
+import { deletepost } from '../../utils/data/posts';
 
 function PostCard({ postObj, onUpdate }) {
   const { user } = useAuth();
@@ -13,7 +14,7 @@ function PostCard({ postObj, onUpdate }) {
 
   const deletePost = () => {
     if (window.confirm('Are you sure you want to delete ?')) {
-      deletePost(postObj.id).then(onUpdate);
+      deletepost(postObj.id).then(onUpdate);
     }
   };
 
