@@ -13,7 +13,9 @@ function Categories() {
   };
 
   const deleteCategory = (id) => {
-    deleteThisCategory(id).then(() => getTheContent());
+    if (window.confirm('Deleting a category will delete all posts under this category.')) {
+      deleteThisCategory(id).then(() => getTheContent());
+    }
   };
 
   useEffect(() => {
@@ -29,7 +31,7 @@ function Categories() {
         margin: '0 auto',
       }}
     >
-      <Button onClick={() => router.push('/categories/new')}> Create new category</Button>
+      <Button variant="primary" onClick={() => router.push('/categories/new')}> Create new category</Button>
       {
         categories.map((category) => <CategoryCard categoryObj={category} deleteCategory={deleteCategory} key={category.id}>{category.label}</CategoryCard>)
       }

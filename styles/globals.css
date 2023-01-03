@@ -40,15 +40,28 @@ body {
 /*Profile Card */
 .userProfileContainer {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: center;
-  margin-top: 25%;
+  margin-top: 2rem;
 }
 
 .profileCard {
   padding: 10px;
 }
+.profile-card{
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+}
+.profile-card-image{
+  height: 300px;
+  object-fit: scale-down;
+}
+.profile-card-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 /* Reactions */
 .reactions-container {
   width: 100%;
@@ -134,26 +147,39 @@ body {
   margin-right: 6px;
 }
 
-.post-card-body{
+.post-card-content-div{
   display: flex;
+}
+.post-card-title-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 80%;
 }
 .post-card-post-image{
   width: 200px;
   object-fit: scale-down;
 }
-.post-card-title-content{
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-}
+
 .post-card-body{
+  display: flex;
   height: 9rem;
-  padding: 20px;
+  padding: 10px;
 }
 .post-card-content{
   overflow:hidden;
-  white-space:normal;
   text-overflow: ellipsis;
+}
+.post-card-tags{
+  display: flex;
+}
+
+.post-card-tags p:not(:first-child) {
+margin-left:6px;
+}
+.post-card-tag{
+  color: #403d39;
+  font-style: italic; 
 }
 
 .post-card-footer{
@@ -195,10 +221,19 @@ body {
 }
 .post-content{
   padding: 2rem;
+  padding-top:1rem;
 }
 
 .post-buttons{
   display: flex;
+}
+.single-post-tags{
+  display: flex;
+  padding-left: 2rem;
+}
+
+.single-post-tags p:not(:first-child){
+  margin-left: 6px;
 }
 
 /* Comments */
@@ -243,4 +278,23 @@ body {
 
 .submitButton {
   margin-top: 6px;
+}
+
+/*Category Manager*/
+.category-render{
+  display: flex;
+}
+.category-card{
+  width: 100%;
+}
+
+.btn-outline-danger{
+  --bs-btn-color: firebrick;
+    --bs-btn-border-color: firebrick;
+    --bs-btn-hover-bg: firebrick;
+    --bs-btn-hover-border-color: #dc3545;
+    --bs-btn-active-bg: goldenrod;
+    --bs-btn-active-border-color: goldenrod;
+    --bs-btn-disabled-color: goldenrod;
+    --bs-btn-disabled-border-color: goldenrod;
 }

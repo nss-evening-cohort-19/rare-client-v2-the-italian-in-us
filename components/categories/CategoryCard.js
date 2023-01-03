@@ -4,12 +4,14 @@ import { Button, Card } from 'react-bootstrap';
 import { FaRegTrashAlt } from 'react-icons/fa';
 
 const CategoryCard = ({ categoryObj, deleteCategory }) => (
-  <Card className="text-center">
-    <Card.Body>
-      <Card.Text>{categoryObj.label}</Card.Text>
-      <Button variant="outline-dark" type="button" className="trash" onClick={() => deleteCategory(categoryObj.id)}><FaRegTrashAlt size={30} /></Button>
-    </Card.Body>
-  </Card>
+  <div className="category-render">
+    <Card className="text-center category-card">
+      <Card.Body>
+        <Card.Text>{categoryObj.label}</Card.Text>
+      </Card.Body>
+    </Card>
+    <Button variant="outline-danger" type="button" className="trash" onClick={() => deleteCategory(categoryObj.id)}><FaRegTrashAlt size={30} /></Button>
+  </div>
 );
 
 CategoryCard.propTypes = {
