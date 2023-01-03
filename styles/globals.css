@@ -18,9 +18,26 @@ a {
 }
 
 body {
-  background-color: #88effd;
+  background-color: #f2e8cf;
 }
 
+/* NAVBAR*/
+.nav-user-image{
+  height: 40px;
+  width:40px;
+  border-radius: 50%;
+}
+.nav-links{
+  width: 100%;
+  justify-content: space-between;
+}
+.nav-user-and-signout{
+  justify-self: right;
+  display: flex;
+}
+
+
+/*Profile Card */
 .userProfileContainer {
   display: flex;
   flex-direction: row;
@@ -56,6 +73,7 @@ body {
 
 .reactions-display{
   margin-left: 10px;
+  display: flex;
 }
 .display-reactions{
   height: 30px;
@@ -66,7 +84,37 @@ body {
   display: none;
 }
 
+/* Post Page */
+.all-posts-page{
+  display: flex;
+  flex-direction: column;
+}
+.post-page-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px;
+}
+.all-posts-title{
+  margin-bottom: 1px;
+}
+
+.add-post{
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  height: 3em;
+}
+.add-post h2{
+  margin-right: 8px;
+  margin-top: 4px;
+}
+
+
 /* Post Card */
+.post-card{
+  margin: .5rem;
+}
 .post-card-header{
   display: flex;
   align-items: center;
@@ -83,10 +131,29 @@ body {
   height: 50px;
   width: 50px;
   border-radius: 50%;
+  margin-right: 6px;
 }
 
+.post-card-body{
+  display: flex;
+}
 .post-card-post-image{
-  width: 100%
+  width: 200px;
+  object-fit: scale-down;
+}
+.post-card-title-content{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+.post-card-body{
+  height: 9rem;
+  padding: 20px;
+}
+.post-card-content{
+  overflow:hidden;
+  white-space:normal;
+  text-overflow: ellipsis;
 }
 
 .post-card-footer{
@@ -97,10 +164,77 @@ body {
   flex-direction: row;
 }
 .trash{
-  margin: 4px;
+  margin: 2px;
 }
 .gear{
-  margin: 4px;
+  margin: 2px;
+}
+
+/* Single Post */
+.single-post{
+  background-color: transparent!important;
+}
+.post-user-image{
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+.single-post-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.post-user-div{
+  display: flex;
+  align-items: center;
+}
+
+.post-image{
+  width: 100%;
+}
+.post-content{
+  padding: 2rem;
+}
+
+.post-buttons{
+  display: flex;
+}
+
+/* Comments */
+.comment-header{
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+}
+.comment-card-body{
+  padding: 8px;
+  display: flex;
+}
+.comment-user-image{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+.comment-edit-div{
+  width: 90%;
+}
+.edit-comment-input{
+  width: 100%;
+}
+.comment-form-div{
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.comment-form{
+  display: flex;
+  align-items: center;
+}
+.comment-form-input{
+  margin-left: 8px;
+  margin-right: 8px;
+  width: 75%;
 }
 
 .profileUserName {

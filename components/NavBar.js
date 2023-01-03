@@ -1,28 +1,34 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import {
   Navbar, //
   Container,
   Nav,
   Button,
+  Image,
 } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
+import getSingleUser from '../utils/data/userData';
 
 export default function NavBar() {
   const { user } = useAuth();
+  const [loggedUser, setLoggedUser] = useState({});
+
+  useEffect(() => {
+    getSingleUser(user.id, user.uid).then(setLoggedUser);
+  }, [user]);
 
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Link passHref href="/">
-          <Navbar.Brand>The Dips - Rare</Navbar.Brand>
+          <Navbar.Brand>RARE ITALIAN</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
+          <Nav className="nav-links me-auto">
             <Link passHref href="/">
               <Nav.Link>Home</Nav.Link>
             </Link>
@@ -46,9 +52,15 @@ export default function NavBar() {
               <Nav.Link>Category Manager
               </Nav.Link>
             </Link>
-            <Button variant="danger" onClick={signOut}>
-              Sign Out
-            </Button>
+            <div className="nav-user-and-signout">
+              <Image className="nav-user-image" src={loggedUser.profileImageUrl} />
+              <Link passHref href={`/users/${user.id}`}>
+                <Nav.Link>Hello {loggedUser.firstName}</Nav.Link>
+              </Link>
+              <Button variant="danger" onClick={signOut}>
+                Sign Out
+              </Button>
+            </div>
           </Nav>
         </Navbar.Collapse>
       </Container>
