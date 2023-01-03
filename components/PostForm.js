@@ -84,19 +84,17 @@ export default function PostForm({ post }) {
             ))}
           </Form.Select>
         </FloatingLabel>
-        <FloatingLabel controlId="floatingSelect" label="Tags">
-          <Select
-            isMulti
-            name="tags"
-            options={tagOptions}
-            className="basic-multi-select"
-            classNamePrefix="select"
-            onChange={tagHandleChange}
-            required
-          />
-        </FloatingLabel>
-
-        <Button type="submit">{post?.id ? 'Update' : 'Submit'} Post</Button>
+        <Form.Label>Tags</Form.Label>
+        <Select
+          isMulti
+          name="tags"
+          options={tagOptions}
+          className="basic-multi-select"
+          classNamePrefix="select"
+          onChange={tagHandleChange}
+          required
+        />
+        <Button type="submit" className="submitButton">{post?.id ? 'Update' : 'Submit'} Post</Button>
       </Form>
     </>
   );

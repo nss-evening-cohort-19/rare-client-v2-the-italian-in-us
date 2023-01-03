@@ -106,3 +106,7 @@ body {
 .profileUserName {
   cursor: pointer;
 }
+
+.submitButton {
+  margin-top: 6px;
+}

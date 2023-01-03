@@ -33,6 +33,9 @@ function PostCard({ postObj, onUpdate }) {
         <Card.Title>{postObj.title}</Card.Title>
         <Image className="post-card-post-image" src={postObj.image_url} />
         <Card.Text>{postObj.content}</Card.Text>
+        <Card.Text>
+          Tags: {}
+        </Card.Text>
       </Card.Body>
       <Card.Footer className="post-card-footer">
         <Reactions postId={postObj.id} />
