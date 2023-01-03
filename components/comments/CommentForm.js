@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Image } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { createComment } from '../../utils/data/commentsData';
 import { useAuth } from '../../utils/context/authContext';
@@ -19,25 +19,27 @@ function CommentForm({ postId, onNewCommentCreated }) {
       createdOn: `${currentDate.getFullYear()}-${currentDate.getMonth() + 1}-${currentDate.getDate()}`,
       content: newComment,
     };
-    createComment(payload).then(onNewCommentCreated());
+    createComment(payload).then(onNewCommentCreated);
+    setNewComment('');
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3">
+    <Form className="comment-form-div" onSubmit={handleSubmit}>
+      <Form.Group className="comment-form">
+        <Image className="comment-user-image" src={user.fbUser.photoURL} />
         <Form.Label>Create a new Comment</Form.Label>
-        <input type="text" name="Comment" value={newComment} onChange={onChange} />
+        <input className="comment-form-input" type="text" name="Comment" value={newComment} onChange={onChange} />
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
       </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
     </Form>
   );
 }
 
 CommentForm.propTypes = {
   onNewCommentCreated: PropTypes.func.isRequired,
-  postId: PropTypes.number.isRequired,
+  postId: PropTypes.string.isRequired,
   // authorId: PropTypes.number.isRequired,
 };
 

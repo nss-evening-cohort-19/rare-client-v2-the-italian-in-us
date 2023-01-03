@@ -44,7 +44,7 @@ export default function PostForm({ post }) {
 
   return (
     <>
-      <h1>Add A Post</h1>
+      <h1>{post?.id ? 'Edit Post' : 'Add A Post'}</h1>
       <Form onSubmit={handleSubmit}>
         <FloatingLabel controlId="floatingInput1" label="Title" className="mb-3">
           <Form.Control type="text" placeholder="Enter Title" name="title" value={formInput.title} onChange={handleChange} required />
