@@ -4,7 +4,7 @@ import { Form, FloatingLabel, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { useAuth } from '../utils/context/authContext';
-import getCategories from '../utils/data/categoryData';
+import { getCategories } from '../utils/data/categoryData';
 import { createPost, updatePost } from '../utils/data/postData';
 import { getAllTags } from '../utils/data/tagData';
 

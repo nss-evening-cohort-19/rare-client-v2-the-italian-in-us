@@ -2,7 +2,7 @@
 /* import Link from 'next/link';
  */import Card from 'react-bootstrap/Card';
 import PropTypes from 'prop-types';
-import { Button } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import { createSubscription, deleteSubscription } from '../utils/data/subscriptionData';
 
 function ProfileCard({ userProfile, user, onUpdate }) {
@@ -23,8 +23,9 @@ function ProfileCard({ userProfile, user, onUpdate }) {
   };
 
   return (
-    <Card style={{ width: '18rem' }}>
-      <Card.Body>
+    <Card className="profile-card">
+      <Image className="profile-card-image" src={userProfile.profileImageUrl} alt="Profile Avatar" />
+      <Card.Body className="profile-card-info">
         <Card.Title>{userProfile.firstName} {userProfile.lastName}</Card.Title>
         <Card.Text>
           Email: {userProfile.email}
@@ -33,15 +34,21 @@ function ProfileCard({ userProfile, user, onUpdate }) {
           Creation Date: {userProfile.createdOn}
         </Card.Text>
         <Card.Text>
-          Profile Type: {userProfile.isStaff ? <div>Admin</div> : <div>Basic</div>}
+          Profile Type: {userProfile.isStaff ? 'Admin' : 'Basic'}
+        </Card.Text>
+        <Card.Text>
+          Subscribers: {userProfile.subscribers?.length}
+        </Card.Text>
+        <Card.Text>
+          Number of Posts: {userProfile.posts?.length}
         </Card.Text>
         {
           userProfile.id === user.id ? (
             <div />
           ) : userProfile.subbed ? (
-            <Button onClick={unSubscribe}>Unsubscribe</Button>
+            <Button variant="danger" onClick={unSubscribe}>Unsubscribe</Button>
           ) : (
-            <Button onClick={subscribe}>Subscribe</Button>
+            <Button variant="success" onClick={subscribe}>Subscribe</Button>
           )
         }
       </Card.Body>
@@ -52,6 +59,7 @@ function ProfileCard({ userProfile, user, onUpdate }) {
 ProfileCard.propTypes = {
   userProfile: PropTypes.shape({
     id: PropTypes.number.isRequired,
+    profileImageUrl: PropTypes.string.isRequired,
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,

@@ -2,19 +2,25 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import CategoryCard from '../../components/categories/CategoryCard';
-import { getAllCategories } from '../../utils/data/categoriesData';
+import { deleteThisCategory, getAllCategories } from '../../utils/data/categoriesData';
 
 function Categories() {
   const [categories, setCategories] = useState([]);
   const router = useRouter();
 
+  const getTheContent = () => {
+    getAllCategories().then(setCategories);
+  };
+
+  const deleteCategory = (id) => {
+    if (window.confirm('Deleting a category will delete all posts under this category.')) {
+      deleteThisCategory(id).then(() => getTheContent());
+    }
+  };
+
   useEffect(() => {
-    getAllCategories().then((data) => {
-      if (data?.length > 0) {
-        setCategories(data);
-      }
-    });
-  }, []);
+    getTheContent();
+  }, [router]);
 
   return (
     <div
@@ -25,9 +31,9 @@ function Categories() {
         margin: '0 auto',
       }}
     >
-      <Button onClick={() => router.push('/categories/new')}> Create new category</Button>
+      <Button variant="primary" onClick={() => router.push('/categories/new')}> Create new category</Button>
       {
-        categories.map((category) => <CategoryCard categoryObj={category} key={category.id}>{category.label}</CategoryCard>)
+        categories.map((category) => <CategoryCard categoryObj={category} deleteCategory={deleteCategory} key={category.id}>{category.label}</CategoryCard>)
       }
     </div>
   );

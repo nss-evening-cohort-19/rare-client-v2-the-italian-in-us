@@ -38,12 +38,12 @@ function SinglePost({ postObj, onUpdate }) {
         <Card.Title>{postObj.title}</Card.Title>
         <Image className="post-image" src={postObj.imageUrl} />
       </Card.Body>
-      <Card.Text className="post-content">{postObj.content}</Card.Text>
-      <div>
+      <div className="single-post-tags">
         {postObj?.tagsOnPost?.map((tag) => (
-          <span>#{tag} </span>
+          <Card.Text className="post-card-tag">#{tag} </Card.Text>
         ))}
       </div>
+      <Card.Text className="post-content">{postObj.content}</Card.Text>
       <Card.Footer className="post-card-footer">
 
         <Reactions postId={postObj?.id} />

@@ -9,7 +9,7 @@ import { getAllPosts } from '../../utils/data/posts';
 
 function AllPosts() {
   const [posts, setPosts] = useState([]);
-  const cronPosts = posts.sort((a, b) => a.publication_date - b.publication_date);
+  const cronPosts = posts.sort((a, b) => b.publication_date.split('-').join('') - a.publication_date.split('-').join(''));
   const router = useRouter();
 
   const getTheContent = () => {

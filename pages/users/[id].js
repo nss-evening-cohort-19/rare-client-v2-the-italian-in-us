@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { Image } from 'react-bootstrap';
+import PostList from '../../components/Post/PostList';
 import ProfileCard from '../../components/profileCard';
 import { useAuth } from '../../utils/context/authContext';
 import getSingleUser from '../../utils/data/userData';
@@ -23,8 +23,12 @@ export default function UserProfile() {
   return (
     <>
       <div className="userProfileContainer">
-        <Image src={userProfile.profileImageUrl} alt="Profile Avatar" />
         <ProfileCard userProfile={userProfile} user={user} onUpdate={getUserDetails} className="profileCard" />
+      </div>
+      <div className="user-posts-div">
+        {userProfile.posts?.map((post) => (
+          <PostList key={post.id} author={userProfile} postObj={post} onUpdate={getUserDetails} />
+        ))}
 
       </div>
     </>

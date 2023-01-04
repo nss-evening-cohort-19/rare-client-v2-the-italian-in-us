@@ -7,4 +7,11 @@ const getCategories = () => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-export default getCategories;
+const getCategoryById = (id) => new Promise((resolve, reject) => {
+  fetch(`${clientCredentials.databaseURL}/categories/${id}`)
+    .then((response) => response.json())
+    .then(resolve)
+    .catch(reject);
+});
+
+export { getCategories, getCategoryById };
